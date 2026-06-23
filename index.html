@@ -226,79 +226,87 @@ body {
         min-height: 100vh;
     }
 
-    /* ====== ИСПРАВЛЕНИЕ: УМЕНЬШАЕМ ШАПКУ ====== */
+    /* ====== УМЕНЬШАЕМ ШАПКУ ====== */
     .header {
-        padding: 8px 12px; /* было 20px — сильно уменьшили */
+        padding: 6px 10px;
     }
 
     .nav-container {
-        flex-direction: row; /* возвращаем горизонтальное расположение */
-        flex-wrap: wrap; /* если не влезают — переносим */
-        gap: 4px 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 3px 8px;
         justify-content: center;
     }
 
     .nav-link {
-        font-size: 0.75rem; /* было 1.1rem — сильно уменьшили */
-        padding: 4px 6px;
+        font-size: 0.7rem;
+        padding: 3px 5px;
         white-space: nowrap;
     }
 
+    /* ====== УВЕЛИЧИВАЕМ ОСНОВНУЮ ПОДЛОЖКУ ====== */
     .main-container {
         padding: 20px 16px;
-        flex: none;
+        flex: 1; /* растягиваем на весь экран */
+        background: rgba(0, 0, 0, 0.45); /* делаем темнее/плотнее */
+        justify-content: center; /* центрируем контент по вертикали */
     }
 
     .content-inner-max {
-        height: auto;
-        gap: 25px;
+        height: 100%;
+        gap: 20px;
+        justify-content: center;
     }
 
     .content-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 30px;
         text-align: center;
         margin: 0;
     }
 
+    /* ====== УВЕЛИЧИВАЕМ ЗАГОЛОВОК ====== */
     .hero-text h1 {
-        font-size: 2.2rem;
-        line-height: 1.3;
+        font-size: 2.8rem; /* было 2.2rem — увеличили */
+        line-height: 1.2;
     }
 
     .dynamic-box {
-        height: 3rem;
-        margin-top: 8px;
+        height: 3.2rem;
+        margin-top: 10px;
     }
 
     .dynamic-text {
-        font-size: 1.4rem;
+        font-size: 1.6rem; /* было 1.4rem — увеличили */
         white-space: normal;
         width: 100%;
         left: 0;
         right: 0;
     }
 
+    /* ====== УВЕЛИЧИВАЕМ КНОПКУ ====== */
     .cta-button {
-        font-size: 1.4rem;
-        padding: 14px 35px;
+        font-size: 1.7rem; /* было 1.4rem — увеличили */
+        padding: 18px 45px;
         width: 100%;
-        max-width: 260px;
+        max-width: 300px;
     }
 
+    /* ====== УВЕЛИЧИВАЕМ ССЫЛКУ В ПОДВАЛЕ ====== */
+    .footer-hint a {
+        font-size: 1rem; /* было 0.85rem — увеличили */
+    }
+
+    /* ====== ПОИСК ====== */
     .search-bar {
         width: 100%;
-        max-width: 280px;
-        padding: 5px 16px;
+        max-width: 300px;
+        padding: 6px 18px;
     }
 
     .search-bar input {
         width: 100%;
-        font-size: 0.9rem;
-    }
-
-    .footer-hint a {
-        font-size: 0.85rem;
+        font-size: 1rem;
     }
 }
     </style>
