@@ -257,17 +257,118 @@
             text-decoration: underline;
         }
 
-        /* ==================== АДАПТИВНОСТЬ ==================== */
-        @media (max-width: 768px) {
-            body { overflow-y: auto; height: auto; }
-            .header { padding: 20px; }
-            .main-container { padding: 40px 20px; }
-            .page-title { font-size: 1.8rem; }
-            .input-row { flex-direction: column; gap: 12px; }
-            .login-card { padding: 25px 20px; }
-            .sdo-card-layout { padding: 30px 20px; }
-            .search-container-header { display: none !important; }
-        }
+       /* ==================== АДАПТИВНОСТЬ ==================== */
+@media (max-width: 768px) {
+    body { 
+        overflow-y: auto; 
+        height: auto; 
+    }
+
+    .header { 
+        padding: 8px 12px; /* уменьшили шапку */
+    }
+
+    .nav-container {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .back-arrow {
+        font-size: 1.2rem;
+    }
+
+    .nav-link-main {
+        font-size: 0.9rem;
+    }
+
+    .main-container { 
+        padding: 20px 16px;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .content-inner-max {
+        height: 100%;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    /* ====== УВЕЛИЧИВАЕМ КАРТОЧКУ СДО ====== */
+    .sdo-card-layout { 
+        padding: 35px 20px;
+        border-radius: 16px;
+        margin: auto 0;
+        width: 100%;
+    }
+
+    /* ====== УВЕЛИЧИВАЕМ ЗАГОЛОВОК ====== */
+    .page-title { 
+        font-size: 2rem; /* было 1.8rem — увеличили */
+        margin-bottom: 25px;
+    }
+
+    /* ====== УВЕЛИЧИВАЕМ КАРТОЧКУ ВХОДА ====== */
+    .login-card { 
+        padding: 30px 24px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .login-card h3 {
+        font-size: 1.5rem; /* было 1.4rem — увеличили */
+        margin-bottom: 20px;
+    }
+
+    /* ====== ПОЛЯ ВВОДА ====== */
+    .input-row { 
+        flex-direction: column; 
+        gap: 14px;
+    }
+
+    .input-field {
+        padding: 14px 16px; /* увеличили отступы */
+        font-size: 1.1rem; /* увеличили шрифт */
+        border-radius: 10px;
+    }
+
+    /* ====== КНОПКА "ВОЙТИ" ====== */
+    .btn-submit {
+        padding: 16px 50px;
+        font-size: 1.3rem; /* было 1.1rem — увеличили */
+        border-radius: 30px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* ====== ТЕКСТ ПОДСКАЗКИ ====== */
+    .hint-text {
+        font-size: 0.9rem; /* было 0.75rem — увеличили */
+        margin-bottom: 18px;
+    }
+
+    /* ====== КНОПКА ГОСУСЛУГ ====== */
+    .gosuslugi-btn {
+        padding: 14px 35px;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .gos-logo {
+        font-size: 1.6rem; /* было 1.4rem — увеличили */
+    }
+
+    /* ====== ПОДВАЛ ====== */
+    .footer-hint a {
+        font-size: 1rem;
+    }
+
+    /* ====== ПОИСК ====== */
+    .search-container-header { 
+        display: none !important; 
+    }
+}
     </style>
 </head>
 <body>
