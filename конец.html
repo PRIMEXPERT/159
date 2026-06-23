@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подать документы — Центр образования №159</title>
+    <style>
+        /* ==================== ОБЩИЕ СТИЛИ И ПОЛНОЭКРАННЫЙ ФОН ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('фон.png') no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        .site-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: transparent !important;
+        }
+
+        /* ЯРКАЯ РОЗОВАЯ ШАПКА С ОРАНЖЕВЫМ ПОИСКОМ */
+        .header {
+            width: 100%;
+            background-color: #ff007f; 
+            padding: 25px 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-arrow {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.6rem;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav-link-main {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .search-container-header {
+            margin-left: auto;
+            display: flex;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #ff9100;
+            border-radius: 24px;
+            padding: 8px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            padding: 5px;
+            font-size: 1.1rem;
+            width: 260px;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ==================== ОСНОВНОЙ КОНТЕНТ НА ВЕСЬ ЭКРАН ==================== */
+        .main-container {
+            flex: 1;
+            background: linear-gradient(135deg, #e3f2fd 0%, #fff5f5 50%, #f3e5f5 100%) !important; 
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-inner-max {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px 1fr 260px;
+            gap: 40px;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* ==================== ХАОТИЧНЫЙ КОЛЛАЖ ФОТОГРАФИЙ ==================== */
+        .photo-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+            justify-content: center;
+            position: relative;
+        }
+
+        .photo-card {
+            width: 100%;
+            height: 110px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            background-color: rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Разбрасываем позиции левой колонки */
+        .photo-column.left .pos-1 { transform: translateX(-15px) rotate(-3deg); width: 105%; }
+        .photo-column.left .pos-2 { transform: translateX(10px) rotate(2deg); width: 95%; }
+        .photo-column.left .pos-3 { transform: translateX(-5px) rotate(-2deg); width: 100%; }
+        .photo-column.left .pos-4 { transform: translateX(15px) rotate(4deg); width: 90%; }
+
+        /* Разбрасываем позиции правой колонки */
+        .photo-column.right .pos-1 { transform: translateX(15px) rotate(3deg); width: 95%; }
+        .photo-column.right .pos-2 { transform: translateX(-10px) rotate(-4deg); width: 105%; }
+        .photo-column.right .pos-3 { transform: translateX(5px) rotate(2deg); width: 90%; }
+        .photo-column.right .pos-4 { transform: translateX(-15px) rotate(-1deg); width: 100%; }
+
+        /* Эффект наведения на разбросанные фото */
+        .photo-card:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ==================== ЦЕНТРАЛЬНЫЙ БЛОК ==================== */
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            color: #444;
+            margin-bottom: 35px;
+            font-weight: 400;
+            -webkit-text-stroke: 0.5px white;
+            text-shadow: 1px 1px 0 white;
+        }
+
+        .social-title {
+            font-size: 2.4rem;
+            color: #444;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            -webkit-text-stroke: 0.5px white;
+            text-shadow: 1px 1px 0 white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 22px 60px;
+            border: 2px solid #b0bec5;
+            border-radius: 50px;
+            color: #777;
+            text-decoration: none;
+            font-size: 2.4rem;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            -webkit-text-stroke: 0.5px #777;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            border-color: #666;
+            color: #444;
+        }
+
+        .vk-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border: 1px solid #dcdcdc;
+            padding: 12px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transition: background-color 0.2s;
+        }
+
+        .vk-btn:hover {
+            background-color: #f5f7fa;
+        }
+
+        .vk-icon {
+            background-color: #0077ff;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .school-footer {
+            grid-column: 1 / span 3;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        /* ==================== АДАПТИВНОСТЬ ==================== */
+        @media (max-width: 900px) {
+            body { overflow-y: auto; height: auto; }
+            .header { padding: 20px; }
+            .main-container { padding: 30px 20px; }
+            .content-inner-max { grid-template-columns: 1fr; gap: 40px; }
+            .photo-column { display: none; } 
+            .main-title { font-size: 2rem; }
+            .social-title { font-size: 1.6rem; }
+            .cta-button { font-size: 1.6rem; padding: 14px 40px; width: 100%; text-align: center; }
+            .school-footer { grid-column: 1; }
+            .search-container-header { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="nav-container">
+                <a href="index.html" class="back-arrow">&#8592;</a>
+                <a href="index.html" class="nav-link-main">Главная</a>
+                
+                <!-- Строка поиска -->
+                <div class="search-container-header">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Введите текст...">
+                        <button class="search-btn" aria-label="Поиск">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Полноэкранный контейнер контента -->
+        <main class="main-container">
+            <div class="content-inner-max">
+                
+                <!-- Левая колонка (Разбросанный коллаж) -->
+                <div class="photo-column left">
+                    <div class="photo-card pos-1"><img src="4.png" alt="Школа фото 4"></div>
+                    <div class="photo-card pos-2"><img src="5.png" alt="Школа фото 5"></div>
+                    <div class="photo-card pos-3"><img src="6.png" alt="Школа фото 6"></div>
+                    <div class="photo-card pos-4"><img src="7.png" alt="Школа фото 7"></div>
+                </div>
+
+                <!-- Центральный блок действий -->
+                <div class="center-content">
+                    <h2 class="main-title">Мы ждём именно тебя!</h2>
+                    
+                    <a href="#" class="cta-button">подать документы</a>
+                    
+                    <h3 class="social-title">Мы в соцсетях</h3>
+                    
+                    <!-- Кнопка ВКонтакте -->
+                    <a href="https://vk.com" target="_blank" class="vk-btn">
+                        <span class="vk-icon">К</span>
+                        <span>вконтакте</span>
+                    </a>
+                </div>
+
+                <!-- Правая колонка (Разбросанный коллаж) -->
+                <div class="photo-column right">
+                    <div class="photo-card pos-1"><img src="8.png" alt="Школа фото 8"></div>
+                    <div class="photo-card pos-2"><img src="9.png" alt="Школа фото 9"></div>
+                    <div class="photo-card pos-3"><img src="10.png" alt="Школа фото 10"></div>
+                    <div class="photo-card pos-4"><img src="11.png" alt="Школа фото 11"></div>
+                </div>
+
+                <!-- Подвал -->
+                <footer class="school-footer">
+                    МАОУ "Центр образования №159" городского округа город Уфа Республики Башкортостан
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
+

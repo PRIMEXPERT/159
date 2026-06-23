@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Благотворительность — Центр образования №159</title>
+    <style>
+        /* ==================== ОБЩИЕ СТИЛИ И ПОЛНОЭКРАННЫЙ ФОН ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Исключаем появление полос прокрутки */
+            /* Затемнение + фоновое изображение на весь экран */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('фон.png') no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        /* Литой монолитный wrapper на весь экран без скруглений и теней */
+        .site-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: transparent !important;
+        }
+
+        /* ЯРКО-ЗЕЛЕНАЯ ШАПКА ПО МАКЕТУ (плотно прилегает к краям) */
+        .header {
+            width: 100%;
+            background-color: #2ea732; 
+            padding: 25px 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Стрелка назад */
+        .back-arrow {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.6rem;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Кнопка Главная */
+        .nav-link-main {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* Строка поиска в шапке */
+        .search-container-header {
+            margin-left: auto;
+            display: flex;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 8px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            padding: 5px;
+            font-size: 1.1rem;
+            width: 260px;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ==================== БЕЛЫЙ КОНТЕНТ НА ВЕСЬ ЭКРАН ==================== */
+        .main-container {
+            flex: 1;
+            background: white !important; /* Белая литая подложка контента по макету */
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            color: #000000;
+        }
+
+        .content-inner-max {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Блок целей фонда */
+        .goals-block {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .goals-block h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .goals-block p {
+            font-size: 1.25rem;
+            line-height: 1.5;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Центральная зона с кнопкой Отправить */
+        .action-zone {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-send {
+            background-color: #00b0ff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 14px 70px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 176, 255, 0.3);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .btn-send:hover {
+            background-color: #0091ea;
+            transform: translateY(-2px);
+        }
+
+        /* Нижний блок макета */
+        .bottom-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        /* Партнеры */
+        .partners-section h3 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        /* Как это будет достигаться */
+        .achievement-section {
+            text-align: right;
+        }
+
+        .achievement-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .achievement-section p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #222;
+        }
+
+        /* Подвал навигации */
+        .footer-hint {
+            text-align: center;
+            width: 100%;
+            margin-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 15px;
+        }
+
+        .footer-hint a {
+            color: #777;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-hint a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        /* ==================== АДАПТИВНОСТЬ ==================== */
+        @media (max-width: 768px) {
+            body { overflow-y: auto; height: auto; }
+            .header { padding: 20px; }
+            .main-container { padding: 30px 20px; }
+            .goals-block h2 { font-size: 1.5rem; }
+            .goals-block p { font-size: 1.1rem; }
+            .bottom-layout { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .achievement-section { text-align: center; }
+            .btn-send { width: 100%; max-width: 280px; padding: 12px 20px; }
+            .search-container-header { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+        <!-- Шапка / Навигация -->
+        <header class="header">
+            <div class="nav-container">
+                <a href="index.html" class="back-arrow">&#8592;</a>
+                <a href="index.html" class="nav-link-main">Главная</a>
+                
+                <!-- Строка поиска в шапке -->
+                <div class="search-container-header">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Введите text...">
+                        <button class="search-btn" aria-label="Поиск">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основной контейнер контента -->
+        <main class="main-container">
+            <div class="content-inner-max">
+                
+                <!-- Цели фонда -->
+                <div class="goals-block">
+                    <h2>Цели фонда:</h2>
+                    <p>Фонд создается с целью поддержки образовательных учреждений: школ, детских садов и пр.<br>Предназначен для сбора денег и расходования их на проекты, реализуемые в самих же школах, детских садах.<br>При создании фонда мы придерживаемся следующих принципов:</p>
+                </div>
+
+                <!-- Центральная кнопка -->
+                <div class="action-zone">
+                    <button class="btn-send">Отправить</button>
+                </div>
+
+                <!-- Нижняя часть: Партнеры и Механика достижения -->
+                <div class="bottom-layout">
+                    <div class="partners-section">
+                        <h3>Наши партнеры:</h3>
+                    </div>
+                    
+                    <div class="achievement-section">
+                        <h4>Как это будет достигаться?</h4>
+                        <p>
+                            В школе управленческий совет школы и директор решили реализовать проект, который будет финансировать фонд.<br>
+                            Для проекта придумано название, определились поставщики, смета расходов на проект, сроки выполнения проекта, ответственное лицо за проект (лидер проекта).<br>
+                            Теперь необходимо зарегистрировать проект в фонде. В фонд направляется письмо с вышеперечисленной информацией.<br>
+                            Информация об открытии проекта и описание сути проекта выкладывается на сайт, и проекту присваивается уникальный номер.<br>
+                            Спонсоры проекта вносят пожертвования через платежные терминалы или кассы банка на конкретный проект.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Подвал -->
+                <div class="footer-hint">
+                    <a href="кружки.html">Перейти к следующей странице</a>
+                </div>
+

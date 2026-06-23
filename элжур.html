@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр образования №159 — ЭлЖур</title>
+    <style>
+        /* ==================== ОБЩИЕ СТИЛИ И ПОЛНОЭКРАННЫЙ ФОН ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Исключаем появление полос прокрутки */
+            /* Затемнение + фоновое изображение на весь экран */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('фон.png') no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        /* Литой монолитный wrapper на весь экран без скруглений и теней */
+        .site-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: transparent !important;
+        }
+
+        /* Синяя шапка по макету (плотно прилегает к краям) */
+        .header {
+            width: 100%;
+            background-color: #5a80f1; 
+            padding: 25px 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Стрелка назад */
+        .back-arrow {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.6rem;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Кнопка Главная */
+        .nav-link-main {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .nav-link-main:hover {
+            opacity: 0.8;
+        }
+
+        /* Поиск встроенный в шапку справа */
+        .search-container-header {
+            margin-left: auto;
+            display: flex;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 8px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            padding: 5px;
+            font-size: 1.1rem;
+            width: 260px;
+        }
+
+        .search-bar input::placeholder {
+            color: #e0e0e0;
+        }
+
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ==================== ОСНОВНОЙ КОНТЕНТ НА ВЕСЬ ЭКРАН ==================== */
+        .main-container {
+            flex: 1; 
+            background: transparent !important; /* Полная прозрачность, убираем серую плашку */
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-inner-max {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Сетка макета страницы ЭлЖур (Белая литая подложка) */
+        .elzhur-layout {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 60px;
+            align-items: center;
+            color: #333333;
+            background: white;
+            padding: 60px;
+            border-radius: 20px; /* Скругление оставлено только для внутренней карточки контента по макету */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            margin: auto 0;
+        }
+
+        /* Текстовое описание */
+        .elzhur-description h3 {
+            font-size: 1.4rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .elzhur-description ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .elzhur-description ul li {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .elzhur-description ul li::before {
+            content: "•";
+            position: absolute;
+            left: -20px;
+            color: #333;
+        }
+
+        /* Блок Госуслуг */
+        .gosuslugi-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gosuslugi-card {
+            background: white;
+            border: 1px solid #dcdcdc;
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .gosuslugi-card p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .gosuslugi-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2f7;
+            border-radius: 14px;
+            padding: 14px 25px;
+            text-decoration: none;
+            border: 1px solid #d1d8e0;
+            transition: background-color 0.2s;
+        }
+
+        .gosuslugi-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Логотип Госуслуг */
+        .gos-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .gos-blue { color: #0c54a0; }
+        .gos-red { color: #ee3124; }
+
+        /* Ссылка перехода дальше в подвале */
+        .footer-hint {
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-hint a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-hint a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* ==================== АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ ==================== */
+        @media (max-width: 768px) {
+            body { overflow-y: auto; height: auto; }
+            .header { padding: 20px; }
+            .main-container { padding: 40px 20px; }
+            .elzhur-layout { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 30px 20px; }
+            .elzhur-description ul { padding-left: 0; }
+            .elzhur-description ul li::before { display: none; }
+            .search-container-header { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+        <!-- Синяя шапка ЭлЖур -->
+        <header class="header">
+            <div class="nav-container">
+                <a href="index.html" class="back-arrow">&#8592;</a>
+                <a href="index.html" class="nav-link-main">Главная</a>
+                
+                <!-- Поиск в шапке -->
+                <div class="search-container-header">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Введите текст...">
+                        <button class="search-btn" aria-label="Поиск">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Полноэкранный литой контейнер контента -->
+        <main class="main-container">
+            <div class="content-inner-max">
+                
+                <!-- Сетка макета страницы -->
+                <div class="elzhur-layout">
+                    <!-- Описание АИС -->
+                    <div class="elzhur-description">
+                        <h3>АИС «Образование» - подсистема государственной информационной системы «Единая электронная образовательная среда Республики Башкортостан», которая позволяет:</h3>
+                        <ul>
+                            <li>вести электронный журнал</li>
+                            <li>просматривать электронный дневник</li>
+                            <li>вести контроль проходов в школе</li>
+                            <li>контролировать питание в школе</li>
+                            <li>получать полную отчетность учебного процесса и многое другое</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Блок авторизации Госуслуг -->
+                    <div class="gosuslugi-container">
+                        <div class="gosuslugi-card">
+                            <p>Вход в систему</p>
+                            <a href="https://gosuslugi.ru" target="_blank" class="gosuslugi-btn">
+                                <span class="gos-logo"><span class="gos-blue">гос</span><span class="gos-red">услуги</span></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Подвал -->
+                <div class="footer-hint">
+                    <a href="sdo.html">Перейти к следующей странице</a>

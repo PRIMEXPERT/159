@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Центр образования №159</title>
+    <style>
+        /* ==================== ОБЩИЕ СТИЛИ И ПОЛНОЭКРАННЫЙ ФОН ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Исключаем появление полос прокрутки */
+            /* Затемнение + фоновое изображение на весь экран */
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                        url('фон.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Литой монолитный wrapper на весь экран без скруглений и теней */
+        .site-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка / Навигация (плотно прилегает к краям) */
+        .header {
+            width: 100%;
+            background-color: rgba(246, 109, 109, 0.95); 
+            padding: 25px 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* ==================== ОСНОВНОЙ КОНТЕНТ НА ВЕСЬ ЭКРАН ==================== */
+        .main-container {
+            flex: 1; /* Занимает всё оставшееся пространство экрана */
+            background: rgba(0, 0, 0, 0.25); 
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .content-inner-max {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Поиск */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(246, 109, 109, 0.35);
+            border-radius: 24px;
+            padding: 8px 25px;
+            width: fit-content;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            padding: 5px;
+            font-size: 1.1rem;
+            width: 260px;
+        }
+
+        .search-bar input::placeholder {
+            color: #f7d5d5;
+        }
+
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Сетка контента */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            margin: auto 0; /* Центрирует блок по вертикали на экране */
+        }
+
+        /* Главный текст */
+        .hero-text h1 {
+            font-size: 4.5rem; 
+            color: #fff;
+            line-height: 1.15;
+            font-weight: 400;
+        }
+
+        /* Стилизация номера школы */
+        .hero-text .highlight {
+            color: #f7e443;
+            font-weight: bold;
+            -webkit-text-stroke: 1px #000;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* Контейнер для анимации строк */
+        .dynamic-box {
+            display: block;
+            height: 5rem;
+            position: relative;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .dynamic-text {
+            font-size: 3.2rem; 
+            color: #e0e0e0;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+            left: 0;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        .dynamic-text.active {
+            opacity: 1;
+            transform: translateY(0);
+            z-index: 2;
+        }
+
+        /* Кнопка "поступить" */
+        .action-zone {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 22px 70px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 2.4rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: #fff;
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Подвал */
+        .footer-hint {
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-hint a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-hint a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* ==================== АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ ==================== */
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto; /* На мобильных разрешаем скролл */
+                height: auto;
+            }
+
+            .header {
+                padding: 20px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .main-container {
+                padding: 40px 20px;
+            }
+
+            .search-bar {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .dynamic-box {
+                height: 3rem;
+            }
+
+            .dynamic-text {
+                font-size: 2rem;
+                left: 50%;
+                transform: translate(-50%, 20px);
+            }
+
+            .dynamic-text.active {
+                transform: translate(-50%, 0) !important;
+            }
+
+            .cta-button {
+                font-size: 1.8rem;
+                padding: 16px 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+        <!-- Шапка -->
+        <header class="header">
+            <nav class="nav-container">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="элжур.html" class="nav-link">ЭлЖур</a>
+                <a href="sdo.html" class="nav-link">СДО</a>
+                <a href="бг.html" class="nav-link">Благотворительность</a>
+                <a href="кружки.html" class="nav-link">О школе</a>
+            </nav>
+        </header>
+
+        <!-- Контент -->
+        <main class="main-container">
+            <div class="content-inner-max">
+                
+                <!-- Поиск -->
+                <div class="search-bar">
+                    <input type="text" placeholder="Введите текст...">
+                    <button class="search-btn" aria-label="Поиск">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Центральная часть -->
+                <div class="content-grid">
+                    <div class="hero-text">
+                        <h1>Центр<br>образования<br><span class="highlight">№159</span></h1>
+                        <div class="dynamic-box">
+                            <span class="dynamic-text">для тебя</span>
+                            <span class="dynamic-text">для семьи</span>
+                            <span class="dynamic-text">для обучения</span>
+                        </div>
+                    </div>
+
+                    <div class="action-zone">
+                        <a href="конец.html" class="cta-button">поступить</a>
+                    </div>
+                </div>
+
+                <!-- Подвал -->
+                <div class="footer-hint">
+                    <a href="элжур.html">Перейти к следующей странице</a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ИСПРАВЛЕННЫЙ СКРИПТ АНИМАЦИИ СМЕНЫ ТЕКСТА -->
+        <!-- ИСПРАВЛЕННЫЙ СКРИПТ АНИМАЦИИ СМЕНЫ ТЕКСТА -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const phrases = document.querySelectorAll(".dynamic-text");
+            let currentIndex = 0;
+
+            if (phrases.length > 0) {
+                phrases[currentIndex].classList.add("active");
+
+                setInterval(() => {
+                    phrases[currentIndex].classList.remove("active");
+                    currentIndex = (currentIndex + 1) % phrases.length;
+                    phrases[currentIndex].classList.add("active");
+                }, 3000); 
+            }
+        });
+    </script>

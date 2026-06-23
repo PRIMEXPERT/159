@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кружки и секции — Центр образования №159</title>
+    <style>
+        /* ==================== ОБЩИЕ СТИЛИ И ПОЛНОЭКРАННЫЙ ФОН ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Исключаем появление полос прокрутки */
+            /* Затемнение + фоновое изображение на весь экран */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('фон.png') no-repeat center center;
+            background-size: 100% 100%;
+        }
+
+        /* Литой монолитный wrapper на весь экран без скруглений и теней */
+        .site-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: transparent !important;
+        }
+
+        /* ЯРКО-РОЗОВАЯ ШАПКА ПО МАКЕТУ (плотно прилегает к краям) */
+        .header {
+            width: 100%;
+            background-color: #e600e6; 
+            padding: 25px 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Стрелка назад */
+        .back-arrow {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.6rem;
+            margin-right: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Кнопка Главная */
+        .nav-link-main {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* Поиск в шапке */
+        .search-container-header {
+            margin-left: auto;
+            display: flex;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 8px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            padding: 5px;
+            font-size: 1.1rem;
+            width: 260px;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ==================== КОНТЕНТ КАРТОЧКИ С ГРАДИЕНТОМ И ЛИТОЙ СТРУКТУРОЙ ==================== */
+        .main-container {
+            flex: 1;
+            /* Мягкий светлый градиент фона из макета для внутренней карточки */
+            background: linear-gradient(135deg, #e3f2fd 0%, #fff5f5 50%, #f3e5f5 100%) !important; 
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-inner-max {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        /* Главный заголовок с обводкой */
+        .page-title {
+            font-size: 3.2rem;
+            color: #444;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            font-weight: 400;
+            -webkit-text-stroke: 1px white;
+            text-shadow: 1px 1px 0 white, -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white;
+        }
+
+        /* Сетка карточек секций */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 100%;
+            margin: auto 0;
+        }
+
+        /* Карточка кружка */
+        .section-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Изображение со скруглением по макету */
+        .section-image-wrapper {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 40px; /* Сильное скругление углов картинок сохранено по макету */
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .section-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Названия кружков с обводкой */
+        .section-title {
+            font-size: 2.2rem;
+            color: #444;
+            font-weight: 400;
+            -webkit-text-stroke: 0.5px white;
+            text-shadow: 1px 1px 0 white;
+        }
+
+        /* Подвал навигации */
+        .footer-hint {
+            text-align: center;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .footer-hint a {
+            color: #777;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-hint a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        /* ==================== АДАПТИВНОСТЬ ==================== */
+        @media (max-width: 768px) {
+            body { overflow-y: auto; height: auto; }
+            .header { padding: 20px; }
+            .main-container { padding: 40px 20px; }
+            .page-title { font-size: 2.2rem; margin-bottom: 25px; }
+            .sections-grid { grid-template-columns: 1fr; gap: 40px; }
+            .section-image-wrapper { border-radius: 30px; max-width: 450px; }
+            .section-title { font-size: 1.8rem; }
+            .search-container-header { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-wrapper">
+        <!-- Шапка / Навигация -->
+        <header class="header">
+            <div class="nav-container">
+                <a href="index.html" class="back-arrow">&#8592;</a>
+                <a href="index.html" class="nav-link-main">Главная</a>
+                
+                <!-- Строка поиска в шапке -->
+                <div class="search-container-header">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Введите текст...">
+                        <button class="search-btn" aria-label="Поиск">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основной контейнер контента -->
+        <main class="main-container">
+            <div class="content-inner-max">
+                
+                <!-- Заголовок страницы -->
+                <h2 class="page-title">Кружки и секции</h2>
+
+                <!-- Сетка из 3-х кружков -->
+                <div class="sections-grid">
+                    
+                    <!-- 1. Лига КВН -->
+                    <div class="section-card">
+                        <div class="section-image-wrapper">
+                            <img src="1.png" alt="Лига КВН">
+                        </div>
+                        <h3 class="section-title">Лига КВН</h3>
+                    </div>
+
+                    <!-- 2. Путь к успеху -->
+                    <div class="section-card">
+                        <div class="section-image-wrapper">
+                            <img src="2.png" alt="Путь к успеху">
+                        </div>
+                        <h3 class="section-title">Путь к успеху</h3>
+                    </div>
+
+                    <!-- 3. Гармония -->
+                    <div class="section-card">
+                        <div class="section-image-wrapper">
+                            <img src="3.png" alt="Гармония">
+                        </div>
+                        <h3 class="section-title">Гармония</h3>
+                    </div>
+
+                </div>
+
+                <!-- Подвал навигации -->
+                <div class="footer-hint">
+                    <a href="конец.html">Перейти к следующей странице</a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
