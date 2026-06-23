@@ -231,8 +231,8 @@
 /* Мобильные телефоны (до 768px) */
 @media (max-width: 768px) {
     body {
-        height: auto; 
-        overflow-y: auto; 
+        height: auto; /* Разрешаем скролл, если контент не влезает */
+        overflow-y: auto; /* Включаем вертикальную прокрутку */
     }
 
     .site-wrapper {
@@ -240,77 +240,76 @@
         min-height: 100vh;
     }
 
-    /* === ТУЛБАР / ШАПКА САЙТА (СТРОГО В ОДНУ СТРОКУ СЛЕВА НАПРАВО) === */
+    /* Переводим шапку в вертикальный список, если ссылки не помещаются */
     .header {
-        padding: 10px 8px;       /* Минимальные отступы сверху/снизу и по бокам */
+        padding: 20px;
     }
 
     .nav-container {
-        flex-direction: row;     /* Выстраиваем элементы строго слева направо */
-        justify-content: center; /* Центрируем всю строку со ссылками на экране */
-        gap: 8px;                /* Компактный отступ между соседними ссылками */
-        flex-wrap: wrap;         /* Защита: если экран совсем крошечный, ссылка аккуратно перенесется целиком, а не сломает верстку */
-        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
     }
 
     .nav-link {
-        font-size: 0.85rem;      /* Уменьшаем размер шрифта, чтобы все слова поместились на телефоне */
-        padding: 4px 6px;        /* Компактные отступы вокруг текста */
-        white-space: nowrap;     /* Запрещаем перенос слов внутри ссылки (убирает эффект гармошки) */
+        font-size: 1.1rem;
     }
 
-    /* === ГЛАВНЫЙ КОНТЕНТ === */
+    /* Главный контент */
     .main-container {
-        padding: 20px 15px; 
+        padding: 30px 20px;
         flex: none;
     }
 
     .content-inner-max {
         height: auto;
-        gap: 30px;
+        gap: 40px;
     }
 
+    /* Превращаем сетку из двух колонок в одну колонку */
     .content-grid {
         grid-template-columns: 1fr; 
-        gap: 30px;
+        gap: 35px;
         text-align: center;
         margin: 0;
     }
 
+    /* Уменьшаем огромные шрифты, чтобы они не разрывали экран */
     .hero-text h1 {
-        font-size: 2rem;
-        line-height: 1.25;
+        font-size: 2.2rem;
+        line-height: 1.3;
     }
 
+    /* Анимационный блок текста */
     .dynamic-box {
-        height: auto;          
-        min-height: 3.5rem;      
+        height: 3.5rem;
         margin-top: 10px;
     }
 
     .dynamic-text {
-        font-size: 1.4rem;
-        white-space: normal;   
+        font-size: 1.6rem;
+        white-space: normal; /* Разрешаем перенос строк, чтобы текст не улетал вправо */
         width: 100%;
-        position: relative;    
+        left: 0;
+        right: 0;
     }
 
+    /* Кнопка "Поступить" */
     .cta-button {
-        font-size: 1.3rem;
-        padding: 12px 30px;
-        width: auto;
-        min-width: 220px;      
+        font-size: 1.5rem;
+        padding: 15px 40px;
+        width: 100%; /* Кнопка растягивается на всю ширину для удобства нажатия пальцем */
+        max-width: 280px;
     }
 
     .search-bar {
         width: 100%;
-        max-width: 260px;
-        padding: 5px 12px;
+        max-width: 300px;
     }
 
     .search-bar input {
         width: 100%;
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 }
 
