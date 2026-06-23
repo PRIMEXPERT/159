@@ -214,61 +214,104 @@
             text-decoration: underline;
         }
 
-        /* ==================== АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ ==================== */
-        @media (max-width: 768px) {
-            body {
-                overflow-y: auto; /* На мобильных разрешаем скролл */
-                height: auto;
-            }
+        /* ==================== АДАПТИВНОСТЬ ДЛЯ СМАРТФОНОВ И ПЛАНШЕТОВ ==================== */
 
-            .header {
-                padding: 20px;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
-            }
+/* Планшеты и маленькие ноутбуки (до 1024px) */
+@media (max-width: 1024px) {
+    .header { padding: 20px 40px; }
+    .main-container { padding: 40px; }
+    .hero-text h1 { font-size: 3.5rem; }
+    .dynamic-text { font-size: 2.5rem; }
+    .dynamic-box { height: 4rem; }
+    .cta-button { font-size: 2rem; padding: 18px 50px; }
+    .content-grid { gap: 40px; }
+}
 
-            .main-container {
-                padding: 40px 20px;
-            }
+/* Мобильные телефоны (до 768px) */
+@media (max-width: 768px) {
+    body {
+        height: auto; /* Разрешаем скролл, если контент не влезает */
+        overflow-y: auto; /* Включаем вертикальную прокрутку */
+    }
 
-            .search-bar {
-                width: 100%;
-                max-width: 280px;
-            }
+    .site-wrapper {
+        height: auto;
+        min-height: 100vh;
+    }
 
-            .content-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 50px;
-            }
+    /* Переводим шапку в вертикальный список, если ссылки не помещаются */
+    .header {
+        padding: 20px;
+    }
 
-            .hero-text h1 {
-                font-size: 2.8rem;
-            }
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 
-            .dynamic-box {
-                height: 3rem;
-            }
+    .nav-link {
+        font-size: 1.1rem;
+    }
 
-            .dynamic-text {
-                font-size: 2rem;
-                left: 50%;
-                transform: translate(-50%, 20px);
-            }
+    /* Главный контент */
+    .main-container {
+        padding: 30px 20px;
+        flex: none;
+    }
 
-            .dynamic-text.active {
-                transform: translate(-50%, 0) !important;
-            }
+    .content-inner-max {
+        height: auto;
+        gap: 40px;
+    }
 
-            .cta-button {
-                font-size: 1.8rem;
-                padding: 16px 50px;
-            }
-        }
+    /* Превращаем сетку из двух колонок в одну колонку */
+    .content-grid {
+        grid-template-columns: 1fr; 
+        gap: 35px;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Уменьшаем огромные шрифты, чтобы они не разрывали экран */
+    .hero-text h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+    }
+
+    /* Анимационный блок текста */
+    .dynamic-box {
+        height: 3.5rem;
+        margin-top: 10px;
+    }
+
+    .dynamic-text {
+        font-size: 1.6rem;
+        white-space: normal; /* Разрешаем перенос строк, чтобы текст не улетал вправо */
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    /* Кнопка "Поступить" */
+    .cta-button {
+        font-size: 1.5rem;
+        padding: 15px 40px;
+        width: 100%; /* Кнопка растягивается на всю ширину для удобства нажатия пальцем */
+        max-width: 280px;
+    }
+
+    .search-bar {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .search-bar input {
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
     </style>
 </head>
 <body>
